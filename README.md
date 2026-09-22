@@ -7,6 +7,10 @@ against the original C++ library.
 The package version tracks the upstream tinybvh version the port matches; port-only fixes bump
 the patch number.
 
+For a portable subset without Unity, see [microBVH](https://github.com/diogovtx/microbvh-cs): a
+single file of safe C# for .NET Standard 2.1 with the binned builder, refit, instancing and custom
+geometry.
+
 ## Requirements
 
 Unity 6000.3 with `com.unity.burst`, `com.unity.mathematics` and `com.unity.collections`
