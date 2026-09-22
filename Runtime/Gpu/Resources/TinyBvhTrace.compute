@@ -1,0 +1,196 @@
+// GPU tracing kernels for the TinyBVH GPU layouts. Dispatched from GpuTracer.cs.
+//
+// Render_<Layout> shades one pixel per thread with the same five display modes as the
+// CPU sample (CpuBvhBackend.RenderJob); Batch_<Layout> traces one ray per thread for
+// the reference tests.
+
+#pragma kernel Render_Bvh2
+#pragma kernel Batch_Bvh2
+#pragma kernel Render_BvhGpu
+#pragma kernel Batch_BvhGpu
+#pragma kernel Render_Bvh4Gpu
+#pragma kernel Batch_Bvh4Gpu
+#pragma kernel Render_Cwbvh
+#pragma kernel Batch_Cwbvh
+#pragma kernel Render_Tlas
+#pragma kernel Batch_Tlas
+
+#include "TinyBvhTraversal.hlsl"
+
+// ---------------------------------------------------------------------------
+// Uniforms and I/O
+// ---------------------------------------------------------------------------
+
+RWTexture2D<float4> Target;
+
+StructuredBuffer<float4> RayOrigins;    // xyz: origin, w: tmax
+StructuredBuffer<float4> RayDirections; // xyz: normalized direction
+RWStructuredBuffer<float4> Hits;        // t, u, v, asfloat( prim )
+RWStructuredBuffer<uint> Occluded;
+// Fifth output value, written by Batch_Tlas only: the index of the hit instance. It is a
+// separate buffer so the other Batch kernels and their four-value Hits record are unchanged.
+RWStructuredBuffer<uint> HitInstances;
+
+// All camera vectors are declared as float4 so that ComputeShader.SetVector never
+// writes over a scalar packed into the same 16-byte constant-buffer slot.
+float4 Origin;
+float4 TopLeftDir;
+float4 Horizontal;
+float4 Vertical;
+float4 SunDir;
+float SceneDiagonal;
+int Mode;
+int Shadows;
+int Width;
+int Height;
+uint RayCount;
+
+// ---------------------------------------------------------------------------
+// Shading, mirroring CpuBvhBackend.RenderJob
+// ---------------------------------------------------------------------------
+
+float3 HeatMap( uint steps )
+{
+	float t = saturate( steps / 64.0f );
+	return t < 0.5f
+		? lerp( float3( 0.0f, 0.0f, 1.0f ), float3( 0.0f, 1.0f, 0.0f ), t * 2.0f )
+		: lerp( float3( 0.0f, 1.0f, 0.0f ), float3( 1.0f, 0.0f, 0.0f ), ( t - 0.5f ) * 2.0f );
+}
+
+float3 ShadePixel( TinyHit hit, float3 n, bool occluded )
+{
+	if ( Mode == 1 ) // Normals
+	{
+		return ( n * 0.5f ) + 0.5f;
+	}
+	if ( Mode == 2 ) // Depth
+	{
+		float depth = saturate( hit.T / SceneDiagonal );
+		return float3( depth, depth, depth );
+	}
+	if ( Mode == 3 ) // TraversalSteps
+	{
+		return HeatMap( hit.Steps );
+	}
+	if ( Mode == 4 ) // Barycentrics
+	{
+		return float3( hit.U, hit.V, 1.0f - hit.U - hit.V );
+	}
+	float lit = ( saturate( dot( n, -SunDir.xyz ) ) * 0.8f ) + 0.2f;
+	if ( occluded )
+	{
+		lit = 0.2f;
+	}
+	return float3( 0.65f, 0.65f, 0.65f ) * lit;
+}
+
+// The kernel bodies are identical apart from the layout-specific traversal, any-hit and
+// normal functions, so they are generated from these two macros.
+#define TINYBVH_RENDER_BODY( TRACE, OCCLUDES, NORMAL ) \
+	if ( ( int )id.x >= Width || ( int )id.y >= Height ) \
+	{ \
+		return; \
+	} \
+	/* Row 0 is the bottom scanline, matching the CPU job output texture. */ \
+	float su = ( id.x + 0.5f ) / Width; \
+	float sv = 1.0f - ( ( id.y + 0.5f ) / Height ); \
+	float3 dir = normalize( TopLeftDir.xyz + ( Horizontal.xyz * su ) + ( Vertical.xyz * sv ) ); \
+	TinyHit hit = TRACE( Origin.xyz, dir, TinyRcp3( dir ), TINYBVH_FAR ); \
+	float3 col; \
+	if ( hit.T >= TINYBVH_FAR ) \
+	{ \
+		col = float3( 20.0f / 255.0f, 20.0f / 255.0f, 28.0f / 255.0f ); \
+	} \
+	else \
+	{ \
+		float3 n = NORMAL; \
+		bool occluded = false; \
+		if ( Mode == 0 && Shadows != 0 ) \
+		{ \
+			float3 sunD = normalize( -SunDir.xyz ); \
+			float3 sunO = Origin.xyz + ( dir * hit.T ) + ( n * ( 1e-3f * SceneDiagonal ) ); \
+			occluded = OCCLUDES( sunO, sunD, TinyRcp3( sunD ), TINYBVH_FAR ); \
+		} \
+		col = ShadePixel( hit, n, occluded ); \
+	} \
+	Target[ id.xy ] = float4( saturate( col ), 1.0f );
+
+#define TINYBVH_BATCH_BODY( TRACE, OCCLUDES ) \
+	uint i = id.x; \
+	if ( i >= RayCount ) \
+	{ \
+		return; \
+	} \
+	float4 o4 = RayOrigins[ i ]; \
+	float3 o = o4.xyz; \
+	float tmax = o4.w; \
+	float3 d = normalize( RayDirections[ i ].xyz ); \
+	float3 rd = TinyRcp3( d ); \
+	TinyHit hit = TRACE( o, d, rd, tmax ); \
+	Hits[ i ] = float4( hit.T, hit.U, hit.V, asfloat( hit.Prim ) ); \
+	Occluded[ i ] = OCCLUDES( o, d, rd, tmax ) ? 1u : 0u;
+
+// ---------------------------------------------------------------------------
+// Kernels
+// ---------------------------------------------------------------------------
+
+[numthreads( 8, 8, 1 )]
+void Render_Bvh2( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_RENDER_BODY( TinyTraceBvh2, TinyOccludedBvh2, TinyNormalVerts( hit.Prim, dir ) )
+}
+
+[numthreads( 64, 1, 1 )]
+void Batch_Bvh2( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_BATCH_BODY( TinyTraceBvh2, TinyOccludedBvh2 )
+}
+
+[numthreads( 8, 8, 1 )]
+void Render_BvhGpu( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_RENDER_BODY( TinyTraceBvhGpu, TinyOccludedBvhGpu, TinyNormalVerts( hit.Prim, dir ) )
+}
+
+[numthreads( 64, 1, 1 )]
+void Batch_BvhGpu( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_BATCH_BODY( TinyTraceBvhGpu, TinyOccludedBvhGpu )
+}
+
+[numthreads( 8, 8, 1 )]
+void Render_Bvh4Gpu( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_RENDER_BODY( TinyTraceBvh4Gpu, TinyOccludedBvh4Gpu, TinyNormalBvh4( hit.TriAddr, dir ) )
+}
+
+[numthreads( 64, 1, 1 )]
+void Batch_Bvh4Gpu( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_BATCH_BODY( TinyTraceBvh4Gpu, TinyOccludedBvh4Gpu )
+}
+
+[numthreads( 8, 8, 1 )]
+void Render_Cwbvh( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_RENDER_BODY( TinyTraceCwbvh, TinyOccludedCwbvh, TinyNormalCwbvh( hit.TriAddr, dir ) )
+}
+
+[numthreads( 64, 1, 1 )]
+void Batch_Cwbvh( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_BATCH_BODY( TinyTraceCwbvh, TinyOccludedCwbvh )
+}
+
+[numthreads( 8, 8, 1 )]
+void Render_Tlas( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_RENDER_BODY( TinyTraceTlas, TinyOccludedTlas, TinyNormalTlas( hit, dir ) )
+}
+
+[numthreads( 64, 1, 1 )]
+void Batch_Tlas( uint3 id : SV_DispatchThreadID )
+{
+	TINYBVH_BATCH_BODY( TinyTraceTlas, TinyOccludedTlas )
+	HitInstances[ i ] = hit.Inst;
+}

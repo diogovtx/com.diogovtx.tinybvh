@@ -1,0 +1,21 @@
+{
+    "name": "TinyBVH.Samples.Editor",
+    "rootNamespace": "TinyBVH.Samples.Editor",
+    "references": [
+        "TinyBVH.Samples",
+        "TinyBVH",
+        "Unity.Mathematics",
+        "Unity.Collections"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

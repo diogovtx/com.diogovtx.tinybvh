@@ -1,0 +1,22 @@
+{
+  "name": "com.diogovtx.tinybvh",
+  "version": "1.8.0",
+  "displayName": "TinyBVH",
+  "description": "Managed C# port of jbikker/tinybvh v1.8.0 (BVH construction, refit, optimization and traversal for CPU and GPU), validated bit-exact against the original library.",
+  "unity": "6000.3",
+  "license": "MIT",
+  "author": { "name": "Diogo Teixeira" },
+  "keywords": [ "bvh", "raytracing", "tinybvh", "burst", "acceleration structure" ],
+  "dependencies": {
+    "com.unity.burst": "1.8.30",
+    "com.unity.collections": "2.6.8",
+    "com.unity.mathematics": "1.3.3"
+  },
+  "samples": [
+    {
+      "displayName": "CPU and GPU raytracer",
+      "description": "Raytracer sample with CPU and GPU backends, on-screen UI to switch backends, builders and display modes, and a standalone benchmark mode. Requires com.unity.inputsystem.",
+      "path": "Samples~/CpuRaytracer"
+    }
+  ]
+}
