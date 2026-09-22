@@ -5,6 +5,10 @@
   "description": "Managed C# port of jbikker/tinybvh v1.8.0 (BVH construction, refit, optimization and traversal for CPU and GPU), validated bit-exact against the original library.",
   "unity": "6000.3",
   "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/diogovtx/com.diogovtx.tinybvh.git" },
+  "documentationUrl": "https://github.com/diogovtx/com.diogovtx.tinybvh#readme",
+  "changelogUrl": "https://github.com/diogovtx/com.diogovtx.tinybvh/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/diogovtx/com.diogovtx.tinybvh/blob/main/LICENSE.md",
   "author": { "name": "Diogo Teixeira" },
   "keywords": [ "bvh", "raytracing", "tinybvh", "burst", "acceleration structure" ],
   "dependencies": {
