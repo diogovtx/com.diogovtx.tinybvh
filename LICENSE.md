@@ -1,9 +1,3 @@
-# TinyBVH for C#
-
-C# port of [tinybvh](https://github.com/jbikker/tinybvh) v1.8.0.
-
-Original work:
-
 MIT License
 
 Copyright (c) 2024 Jacco Bikker
