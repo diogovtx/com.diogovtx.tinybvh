@@ -405,7 +405,7 @@ namespace TinyBVH.Tests
 			string binPath = BvhSceneFile.TestDataPath( sceneName + ".bin" );
 			if ( !File.Exists( binPath ) )
 			{
-				Assert.Ignore( $"missing {binPath}; run TestData/fetch.ps1" );
+				Assert.Ignore( $"missing {binPath}; run Tools~/fetch.ps1" );
 			}
 			return BvhSceneFile.Load( binPath, Allocator.Persistent, out triCount );
 		}

@@ -11,8 +11,8 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Tests for the BVH8_CPU port: the conversion against the reference dump of
-	/// Tools/RefDump/layoutdump.cpp, and both traversal paths - the AVX2 path and the scalar
-	/// fallback - against the ray dump of Tools/RefDump/refdump.cpp. The C++ BVH8_CPU traversal
+	/// Tools~/RefDump/layoutdump.cpp, and both traversal paths - the AVX2 path and the scalar
+	/// fallback - against the ray dump of Tools~/RefDump/refdump.cpp. The C++ BVH8_CPU traversal
 	/// needs AVX2 and is a fatal-error stub in the scalar reference build, so the rays are the
 	/// base-BVH ones, exactly as Bvh4CpuTests uses them. Tests are ignored when their reference
 	/// data is missing.
@@ -113,13 +113,13 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".layouts.ref" );
 			if ( !File.Exists( binPath ) || !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );
 			if ( !refFile.HasBvh8Cpu )
 			{
-				Assert.Ignore( $"{refPath} predates the BVH8_CPU section (needs TBVHLAY4); re-run Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"{refPath} predates the BVH8_CPU section (needs TBVHLAY4); re-run Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -242,7 +242,7 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".ref" );
 			if ( !File.Exists( binPath ) || !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			RefDumpFile refFile = RefDumpFile.Load( refPath );
@@ -277,7 +277,7 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".ref" );
 			if ( !File.Exists( binPath ) || !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			RefDumpFile refFile = RefDumpFile.Load( refPath );
@@ -343,7 +343,7 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".ref" );
 			if ( !File.Exists( binPath ) || !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			bool scalar = !Bvh8Cpu.IsSimdSupported;
@@ -424,7 +424,7 @@ namespace TinyBVH.Tests
 			string binPath = BvhSceneFile.TestDataPath( "suzanne.bin" );
 			if ( !File.Exists( binPath ) )
 			{
-				Assert.Ignore( $"missing {binPath}; run TestData/fetch.ps1" );
+				Assert.Ignore( $"missing {binPath}; run Tools~/fetch.ps1" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );

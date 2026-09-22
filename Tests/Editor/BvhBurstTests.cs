@@ -48,7 +48,7 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".ref" );
 			if ( !File.Exists( binPath ) || !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"Missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat." );
+				Assert.Ignore( $"Missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat." );
 			}
 
 			RefDumpFile refFile = RefDumpFile.Load( refPath );

@@ -13,7 +13,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Validates the double-precision port (BvhDouble, RayDouble, BlasInstanceDouble) against the
-	/// reference data dumped by Tools/RefDump/dbldump.cpp. Everything is compared bit for bit:
+	/// reference data dumped by Tools~/RefDump/dbldump.cpp. Everything is compared bit for bit:
 	/// double arithmetic is exact on both sides, so unlike the single-precision suites there is no
 	/// relative tolerance here. Hits within a hair of a triangle edge are still classified and
 	/// reported separately, in case the two sides ever disagree there.
@@ -310,7 +310,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 to fetch scenes and Tools/RefDump/run_all.bat to generate reference data" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 to fetch scenes and Tools~/RefDump/run_all.bat to generate reference data" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 
@@ -361,7 +361,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 
@@ -406,7 +406,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 
@@ -572,7 +572,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 

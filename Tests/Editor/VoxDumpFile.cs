@@ -7,7 +7,7 @@ using TinyBVH;
 namespace TinyBVH.Tests
 {
 	/// <summary>
-	/// Reads the ".vox.ref" reference file produced by Tools/RefDump/voxeldump.cpp (format
+	/// Reads the ".vox.ref" reference file produced by Tools~/RefDump/voxeldump.cpp (format
 	/// "TBVHVOX1"): the contents of a procedurally filled 256^3 VoxelSet, 65536 object-space rays
 	/// with their VoxelSet::Intersect, GetNormal and IsOccluded results, and a mixed TLAS that has
 	/// the voxel set attached as a BLAS next to a triangle BVH.

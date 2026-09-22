@@ -9,7 +9,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Tests for the tree-rotation optimizer (Bvh.Optimize and BvhVerbose) against the two
-	/// optimizer sections of the reference dump produced by Tools/RefDump/refdump.cpp. The
+	/// optimizer sections of the reference dump produced by Tools~/RefDump/refdump.cpp. The
 	/// optimizer runs under Burst (its entry points carry BurstCompile( CompileSynchronously =
 	/// true ), so a direct call is compiled), which is what makes the node comparison bit-exact:
 	/// Mono evaluates scalar float math in double. Tests are ignored when reference data is missing.
@@ -77,7 +77,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 to fetch scenes and Tools/RefDump/run_all.bat to generate reference data" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 to fetch scenes and Tools~/RefDump/run_all.bat to generate reference data" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -169,7 +169,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -264,7 +264,7 @@ namespace TinyBVH.Tests
 			const string sceneName = "suzanne";
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -331,7 +331,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );

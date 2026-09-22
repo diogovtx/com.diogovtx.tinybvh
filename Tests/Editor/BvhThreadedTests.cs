@@ -133,7 +133,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( LargeScene, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 to fetch scenes and Tools/RefDump/run_all.bat to generate reference data" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 to fetch scenes and Tools~/RefDump/run_all.bat to generate reference data" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -170,7 +170,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( LargeScene, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -225,7 +225,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( LargeScene, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -287,7 +287,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( SmallScene, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );
@@ -343,7 +343,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( LargeScene, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint triCount );

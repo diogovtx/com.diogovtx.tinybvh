@@ -6,7 +6,7 @@ using TinyBVH;
 namespace TinyBVH.Tests
 {
 	/// <summary>
-	/// Reads the ".simd.ref" reference file produced by Tools/RefDump/simddump.cpp (format
+	/// Reads the ".simd.ref" reference file produced by Tools~/RefDump/simddump.cpp (format
 	/// "TBVHSIM2"), the only dump tool compiled with SIMD enabled: the CPU traversal of the CWBVH
 	/// layout and the BVH_SoA layout, which tinybvh compiles only under BVH_USEAVX, the tree of the
 	/// AVX binned builder (BVH::BuildAVX) and a TLAS whose BLASes use mixed layouts. The base tree

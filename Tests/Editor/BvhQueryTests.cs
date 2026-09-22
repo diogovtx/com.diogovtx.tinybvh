@@ -9,7 +9,7 @@ namespace TinyBVH.Tests
 	/// <summary>
 	/// Tests for the query functions ported after the ".ref" format was frozen - sphere overlap,
 	/// the EPO cost metric and 256-ray packet traversal - against the ".feat.ref" dump produced by
-	/// Tools/RefDump/featdump.cpp. Every reference tree in this file is the plain binned build,
+	/// Tools~/RefDump/featdump.cpp. Every reference tree in this file is the plain binned build,
 	/// which the port already reproduces bit for bit, so any difference found here belongs to the
 	/// query itself. Tests are ignored when reference data is missing.
 	/// </summary>
@@ -40,7 +40,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out binPath, out featPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {featPath}; run TestData/fetch.ps1 to fetch scenes and Tools/RefDump/run_all.bat to generate reference data" );
+				Assert.Ignore( $"missing {binPath} or {featPath}; run Tools~/fetch.ps1 to fetch scenes and Tools~/RefDump/run_all.bat to generate reference data" );
 			}
 		}
 

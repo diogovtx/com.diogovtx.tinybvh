@@ -6,7 +6,7 @@ using TinyBVH;
 namespace TinyBVH.Tests
 {
 	/// <summary>
-	/// Reads the ".ref" reference file produced by Tools/RefDump/refdump.cpp (format "TBVHREF5").
+	/// Reads the ".ref" reference file produced by Tools~/RefDump/refdump.cpp (format "TBVHREF5").
 	/// See that file's header comment for the authoritative layout; this reader matches it exactly,
 	/// including the 48-byte (not 40-byte) per-ray records for the BLAS and TLAS ray sections.
 	/// </summary>

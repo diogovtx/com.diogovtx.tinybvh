@@ -12,7 +12,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Tests for a TLAS over BLASses of mixed layouts - the C++ 'BVHBase** blasList' - against the
-	/// mixed-TLAS section of the reference dump of Tools/RefDump/simddump.cpp. The BLAS list is
+	/// mixed-TLAS section of the reference dump of Tools~/RefDump/simddump.cpp. The BLAS list is
 	/// { BVH, BVH4_CPU, BVH8_CPU, BVH_SoA }, each built over the same soup with the scalar binned
 	/// builder, with five instances; see simddump.cpp for the transforms and masks, which are read
 	/// straight from the dump so the setup cannot drift from the reference.
@@ -146,7 +146,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 
@@ -304,7 +304,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 

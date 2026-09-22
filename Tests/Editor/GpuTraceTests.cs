@@ -8,7 +8,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Traces the reference ray set with each GPU layout and compares the results against the
-	/// data dumped by Tools/RefDump/refdump.cpp. The test runner defaults to -nographics, where
+	/// data dumped by Tools~/RefDump/refdump.cpp. The test runner defaults to -nographics, where
 	/// compute shaders are unavailable and every case is ignored; run it with graphics enabled.
 	/// </summary>
 	public class GpuTraceTests
@@ -57,7 +57,7 @@ namespace TinyBVH.Tests
 			}
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = default;

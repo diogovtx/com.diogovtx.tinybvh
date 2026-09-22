@@ -6,7 +6,7 @@ using TinyBVH;
 namespace TinyBVH.Tests
 {
 	/// <summary>
-	/// Reads the "&lt;scene&gt;.layouts.ref" reference file produced by Tools/RefDump/layoutdump.cpp
+	/// Reads the "&lt;scene&gt;.layouts.ref" reference file produced by Tools~/RefDump/layoutdump.cpp
 	/// (format "TBVHLAY4", or the older "TBVHLAY3" without the trailing BVH8_CPU section and
 	/// "TBVHLAY2" without the BVH4_CPU one either). That file's header comment is authoritative;
 	/// this reader matches it:

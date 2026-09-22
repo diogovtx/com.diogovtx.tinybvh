@@ -2,6 +2,11 @@
 
 All notable changes to this package will be documented in this file.
 
+## [Unreleased]
+
+- The reference dump tools and the scene download script now ship with the package in `Tools~`,
+  so the tests can run outside the development repository.
+
 ## [1.8.0] - 2026-09-22
 
 First packaged release: a complete managed C# port of tinybvh 1.8.0.

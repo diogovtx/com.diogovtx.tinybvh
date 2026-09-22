@@ -12,7 +12,7 @@ namespace TinyBVH.Tests
 	/// <summary>
 	/// Data-driven tests comparing the layout conversions (BVH_GPU, MBVH&lt;4&gt;, BVH4_GPU, the
 	/// Compact + SplitLeafs( 3 ) preparation and CWBVH) against reference data dumped by
-	/// Tools/RefDump/layoutdump.cpp from the original tinybvh library. If TestData/&lt;name&gt;.bin
+	/// Tools~/RefDump/layoutdump.cpp from the original tinybvh library. If TestData/&lt;name&gt;.bin
 	/// or TestData/&lt;name&gt;.layouts.ref is missing, the test is ignored.
 	/// </summary>
 	public class BvhLayoutTests
@@ -196,7 +196,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );
@@ -244,7 +244,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );
@@ -272,7 +272,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );
@@ -340,7 +340,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );
@@ -390,7 +390,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );
@@ -420,7 +420,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			LayoutDumpFile refFile = LayoutDumpFile.Load( refPath );

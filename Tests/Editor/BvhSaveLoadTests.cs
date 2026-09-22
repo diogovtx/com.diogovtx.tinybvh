@@ -35,7 +35,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			string savePath = Path.GetTempFileName();
@@ -99,7 +99,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			string savePath = Path.GetTempFileName();
@@ -133,7 +133,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			string savePath = Path.GetTempFileName();
@@ -169,7 +169,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			string savePath = Path.GetTempFileName();

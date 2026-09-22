@@ -12,7 +12,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Tests for the port of tinybvh's VoxelSet against the reference dump of
-	/// Tools/RefDump/voxeldump.cpp. The voxel content is procedural and scene-independent, so the
+	/// Tools~/RefDump/voxeldump.cpp. The voxel content is procedural and scene-independent, so the
 	/// content test does the same work for every scene; the parametrisation is kept because the
 	/// TLAS section of the dump - not compared yet - does differ per scene.
 	/// Tests are ignored when their reference data is missing.
@@ -63,7 +63,7 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".vox.ref" );
 			if ( !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"missing {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			return VoxDumpFile.Load( refPath );
 		}
@@ -411,7 +411,7 @@ namespace TinyBVH.Tests
 			string binPath = BvhSceneFile.TestDataPath( sceneName + ".bin" );
 			if ( !File.Exists( binPath ) )
 			{
-				Assert.Ignore( $"missing {binPath}; run TestData/fetch.ps1" );
+				Assert.Ignore( $"missing {binPath}; run Tools~/fetch.ps1" );
 			}
 			VoxDumpFile refFile = RequireData( sceneName );
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );

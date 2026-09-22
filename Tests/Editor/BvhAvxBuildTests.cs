@@ -11,7 +11,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Tests for the AVX binned-SAH builder (Bvh.BuildAvx, the port of BVH::BuildAVX) against the
-	/// AVX-build section of the reference dump produced by Tools/RefDump/simddump.cpp, the only
+	/// AVX-build section of the reference dump produced by Tools~/RefDump/simddump.cpp, the only
 	/// dump tool compiled with /arch:AVX2 and therefore the only one whose BVH::Build routes to
 	/// BuildAVX. That builder bins differently from the scalar one, so its tree is not the tree the
 	/// rest of the suite checks; the dump carries it separately.
@@ -121,7 +121,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			RequireBurstAndAvx();
 
@@ -185,7 +185,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			RequireBurstAndAvx();
 
@@ -292,7 +292,7 @@ namespace TinyBVH.Tests
 			string binPath = BvhSceneFile.TestDataPath( sceneName + ".bin" );
 			if ( !File.Exists( binPath ) )
 			{
-				Assert.Ignore( $"missing {binPath}; run TestData/fetch.ps1" );
+				Assert.Ignore( $"missing {binPath}; run Tools~/fetch.ps1" );
 			}
 			RequireBurstAndAvx();
 

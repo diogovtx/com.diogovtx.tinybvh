@@ -6,7 +6,7 @@ using TinyBVH;
 namespace TinyBVH.Tests
 {
 	/// <summary>
-	/// Reads the ".feat.ref" reference file produced by Tools/RefDump/featdump.cpp (format
+	/// Reads the ".feat.ref" reference file produced by Tools~/RefDump/featdump.cpp (format
 	/// "TBVHFEA1"): the alternative builders, presplitting, SBVH bin settings, EPO cost, sphere
 	/// queries, 256-ray packets and the stochastic optimizer. See that file's header comment for
 	/// the authoritative layout and for how each tree was built. Every tree block traces the same

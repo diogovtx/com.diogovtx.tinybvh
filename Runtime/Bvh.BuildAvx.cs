@@ -94,7 +94,7 @@ namespace TinyBVH
 	///
 	/// Only the serial path is ported. The C++ runs threaded when ENABLE_THREADED_BUILDS is defined
 	/// and triCount >= MT_BUILD_THRESHOLD and the context has a spawn and a barrier hook; it then
-	/// bins in slices and spawns subtrees. Tools/RefDump/simddump.cpp is built with
+	/// bins in slices and spawns subtrees. Tools~/RefDump/simddump.cpp is built with
 	/// NO_THREADED_BUILDS and clears the context hooks, so the reference is the serial tree.
 	///
 	/// Every _mm256_* / _mm_* operation is mirrored one to one and in the same order, so the

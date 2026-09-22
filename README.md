@@ -84,17 +84,29 @@ derived layout. `Bvh.Compact` and `SplitLeafs` mutate the base BVH in place.
 Import **CPU and GPU raytracer** from this package's Samples tab in the Package Manager window:
 a raytracer with one backend per layout, an on-screen UI to switch backends, builders and
 display modes, and a standalone benchmark mode. It needs `com.unity.inputsystem`, and loads
-tinybvh's `.bin` test scenes from a `TestData` folder next to the project's `Assets` folder;
-see the sample's README.
+tinybvh's `.bin` test scenes from a `TestData` folder next to the project's `Assets` folder,
+where `Tools~/fetch.ps1` downloads them; see the sample's README.
 
 ## Tests
 
 `Tests/Editor` holds the NUnit edit-mode tests. They compare trees, index arrays and tens of
 thousands of rays per scene bit for bit against reference dumps produced by the original C++
-library, and skip themselves when the dumps are missing. To run them, list the package under
-`testables` in `Packages/manifest.json`, fetch tinybvh's `suzanne`, `bunny` and `cryteksponza`
-`.bin` scenes into `TestData/` and generate the dumps with the reference tools from the port's
-development repository.
+library, and skip themselves when the dumps are missing. To run them:
+
+1. List the package under `testables` in `Packages/manifest.json`.
+2. Download tinybvh's test scenes into a `TestData` folder next to the project's `Assets` folder
+   with `Tools~/fetch.ps1`, or by hand from tinybvh's 1.8.0 release:
+   [suzanne.bin](https://raw.githubusercontent.com/jbikker/tinybvh/0e4584287823252cf83f0e9cd072848bec5f79c5/testdata/suzanne.bin),
+   [bunny.bin](https://raw.githubusercontent.com/jbikker/tinybvh/0e4584287823252cf83f0e9cd072848bec5f79c5/testdata/bunny.bin) and
+   [cryteksponza.bin](https://raw.githubusercontent.com/jbikker/tinybvh/0e4584287823252cf83f0e9cd072848bec5f79c5/testdata/cryteksponza.bin).
+3. Build the reference tools with `Tools~/RefDump/build.bat` (MSVC on Windows x64). It downloads
+   `tiny_bvh.h` from the same tinybvh commit when it is missing. `simddump` is built for AVX2
+   and needs a CPU that has it.
+4. Generate the dumps, about 900 MB, with `Tools~/RefDump/run_all.bat`.
+
+`fetch.ps1` and `run_all.bat` take that folder as an optional argument. Without one they find it
+from their own location, which works when the package is embedded in the project's `Packages/`
+folder.
 
 ## Deviations from the C++
 

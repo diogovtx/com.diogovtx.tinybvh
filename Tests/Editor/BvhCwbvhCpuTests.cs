@@ -11,7 +11,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Tests for the CPU traversal of the CWBVH layout against the reference dump of
-	/// Tools/RefDump/simddump.cpp, the only dump tool compiled with SIMD enabled - the C++
+	/// Tools~/RefDump/simddump.cpp, the only dump tool compiled with SIMD enabled - the C++
 	/// BVH8_CWBVH::Intersect only exists under BVH_USEAVX, because it needs __lzcnt / __popcnt.
 	/// The builders in that tool still run the scalar binned path, so the dump also carries the
 	/// base tree; <see cref="BaseTree_MatchesReference"/> checks it first, so a drift between the
@@ -58,7 +58,7 @@ namespace TinyBVH.Tests
 			return $"{diffs.Count} differing, first at [{list}]";
 		}
 
-		/// <summary>FNV-1a 64, byte-wise, exactly as Tools/RefDump/simddump.cpp computes it.</summary>
+		/// <summary>FNV-1a 64, byte-wise, exactly as Tools~/RefDump/simddump.cpp computes it.</summary>
 		static unsafe ulong Fnv1a64( void* data, long bytes )
 		{
 			byte* p = ( byte* )data;
@@ -115,7 +115,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 
@@ -168,7 +168,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 
@@ -208,7 +208,7 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			Assert.IsTrue( BvhBurst.IsActive, "Burst direct calls fell back to Mono; check Logs/test-run.log for Burst errors" );
 

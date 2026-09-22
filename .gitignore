@@ -1,0 +1,4 @@
+# Reference dump tools: build outputs, and the tinybvh header build.bat downloads when missing
+Tools~/RefDump/tiny_bvh.h
+Tools~/RefDump/*.exe
+Tools~/RefDump/*.obj

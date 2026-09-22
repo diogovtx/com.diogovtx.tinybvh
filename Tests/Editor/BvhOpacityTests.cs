@@ -14,7 +14,7 @@ namespace TinyBVH.Tests
 	/// <summary>
 	/// Tests for the opacity micro map port. Every layout that supports maps - the base BVH, the
 	/// BVH4_CPU and BVH8_CPU SIMD layouts and the Bvh2, BvhGpu and TLAS-over-BvhGpu GPU kernels -
-	/// is given the procedural map Tools/RefDump/refdump.cpp attaches and traced with the same
+	/// is given the procedural map Tools~/RefDump/refdump.cpp attaches and traced with the same
 	/// 65,536 rays, then compared against that file's opacity section. BVH4_GPU and CWBVH have no
 	/// opacity support here because the OpenCL kernels they are ported from have none either.
 	///
@@ -197,12 +197,12 @@ namespace TinyBVH.Tests
 		{
 			if ( !TryGetPaths( sceneName, out binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			RefDumpFile refFile = RefDumpFile.Load( refPath );
 			if ( refFile.OpacityRays == null || refFile.OpacityRays.Length == 0 )
 			{
-				Assert.Ignore( $"{refPath} has no opacity section; re-run Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"{refPath} has no opacity section; re-run Tools~/RefDump/run_all.bat" );
 			}
 			Assert.AreEqual( MapN, refFile.OpMapN, "reference opacity subdivision" );
 			Assert.AreEqual( ( ( MapN * MapN ) + 31 ) >> 5, refFile.OpMapWords, "reference opacity words per triangle" );

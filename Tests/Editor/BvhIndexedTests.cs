@@ -11,7 +11,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Validates the indexed-geometry build path against the indexed sections of the reference dump
-	/// (Tools/RefDump/refdump.cpp): a BVH built over a welded vertex array plus a separate index
+	/// (Tools~/RefDump/refdump.cpp): a BVH built over a welded vertex array plus a separate index
 	/// array, where every layout and traversal addresses vertices through Bvh.VertIdx instead of
 	/// prim * 3. The welded mesh comes out of the dump rather than being re-welded here, so the two
 	/// sides cannot drift apart over the welding rule.
@@ -174,12 +174,12 @@ namespace TinyBVH.Tests
 			string refPath = BvhSceneFile.TestDataPath( sceneName + ".ref" );
 			if ( !File.Exists( refPath ) )
 			{
-				Assert.Ignore( $"missing {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 			RefDumpFile refFile = RefDumpFile.Load( refPath );
 			if ( refFile.WeldedVertices == null || refFile.WeldedVertices.Length == 0 )
 			{
-				Assert.Ignore( $"{refPath} predates the indexed-geometry sections; re-run Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"{refPath} predates the indexed-geometry sections; re-run Tools~/RefDump/run_all.bat" );
 			}
 
 			IndexedScene scene = new IndexedScene();
@@ -560,7 +560,7 @@ namespace TinyBVH.Tests
 			string binPath = BvhSceneFile.TestDataPath( sceneName + ".bin" );
 			if ( !File.Exists( binPath ) )
 			{
-				Assert.Ignore( $"missing {binPath}; run TestData/fetch.ps1" );
+				Assert.Ignore( $"missing {binPath}; run Tools~/fetch.ps1" );
 			}
 			IndexedScene scene = LoadScene( sceneName );
 			NativeArray<float4> soup = BvhSceneFile.Load( binPath, Allocator.Persistent, out uint soupTriCount );

@@ -9,7 +9,7 @@ namespace TinyBVH.Tests
 {
 	/// <summary>
 	/// Traces the reference TLAS ray set with the GPU TLAS kernels and compares the results
-	/// against the data dumped by Tools/RefDump/refdump.cpp. The scene is reconstructed exactly
+	/// against the data dumped by Tools~/RefDump/refdump.cpp. The scene is reconstructed exactly
 	/// as BvhReferenceTests.Tlas_MatchesReference does: one BLAS over the scene triangles and the
 	/// three instances of the .ref TLAS section, with only the transform and the mask taken from
 	/// the file so the rest is produced by the C# code under test.
@@ -57,7 +57,7 @@ namespace TinyBVH.Tests
 			}
 			if ( !TryGetPaths( sceneName, out string binPath, out string refPath ) )
 			{
-				Assert.Ignore( $"missing {binPath} or {refPath}; run TestData/fetch.ps1 and Tools/RefDump/run_all.bat" );
+				Assert.Ignore( $"missing {binPath} or {refPath}; run Tools~/fetch.ps1 and Tools~/RefDump/run_all.bat" );
 			}
 
 			NativeArray<float4> verts = default;

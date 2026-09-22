@@ -6,7 +6,7 @@ using TinyBVH;
 namespace TinyBVH.Tests
 {
 	/// <summary>
-	/// Reads the ".dbl.ref" reference file produced by Tools/RefDump/dbldump.cpp (format
+	/// Reads the ".dbl.ref" reference file produced by Tools~/RefDump/dbldump.cpp (format
 	/// "TBVHDBL1"): the double-precision BVH (BVH_Double, RayEx, BLASInstanceEx) built over the
 	/// scene triangles, over the same triangles welded into an indexed mesh, and a TLAS over three
 	/// instances of the first tree. See that file's header comment for the authoritative layout.
